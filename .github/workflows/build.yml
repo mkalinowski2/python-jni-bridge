@@ -1,0 +1,28 @@
+name: Python JNI Bridge Build
+
+jobs:
+  build_ubuntu:
+    name: Ubuntu
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        BUILD: [x64]
+        include:
+          - BUILD: x64
+            ARCH: x64
+            PACKAGES: gcc
+            CC: CC=gcc CXX=g++
+            STRIP: strip
+    steps:
+    - uses: actions/checkout@v3
+    - name: Build
+      run: ${{matrix.CC}} cmake . -B build
+      cd build
+      cmake --build . --parallel
+    - name: Upload artifacts
+      uses: actions/upload-artifact@v3
+      with:
+        name: ubuntu-libraries
+        path: |
+            build/libHardTimesCoreNative.so

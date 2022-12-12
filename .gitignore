@@ -4,3 +4,4 @@ out/
 .vs/
 # Python cache files
 *.pyc
+build/
