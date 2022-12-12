@@ -22,7 +22,7 @@ ELSE()
     target_include_directories(HardTimesCoreNative PUBLIC ${PROJECT_SOURCE_DIR}/hardtimes-client-core-platform/python/lib/linux-x64/include)
 ENDIF()
 
-target_link_libraries(HardTimesCoreNative python3)
+target_link_libraries(HardTimesCoreNative python3 dl)
 
 IF (WIN32)
     add_custom_command(
