@@ -15,15 +15,15 @@ jobs:
             CC: CC=gcc CXX=g++
             STRIP: strip
     steps:
-    - uses: actions/checkout@v3
-    - name: Build
-      run: |
-      ${{matrix.CC}} cmake . -B build
-      cd build
-      cmake --build . --parallel
-    - name: Upload artifacts
-      uses: actions/upload-artifact@v3
-      with:
-        name: ubuntu-libraries
-        path: |
-            build/libHardTimesCoreNative.so
+      - uses: actions/checkout@v3
+      - name: Build
+        run: |
+        ${{matrix.CC}} cmake . -B build
+        cd build
+        cmake --build . --parallel
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: ubuntu-libraries
+          path: |
+              build/libHardTimesCoreNative.so
